@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MB.Outbox.Persistence.Core.MsSql\MB.Outbox.Persistence.Core.MsSql.csproj" />
+      <ProjectReference Include="..\MB.Outbox.Persistence.LinqToDb\MB.Outbox.Persistence.LinqToDb.csproj" />
+    </ItemGroup>
+
+</Project>
