@@ -51,6 +51,47 @@ Read [this](https://microservices.io/patterns/data/transactional-outbox.html).
 
 > IMPORTANT:  As a message relay [Debezium](https://debezium.io/) is strongly recommended
 
+### Samples
+
+Use 'SimpleOutboxSampleLinqToDb' project to see how library exactly works
+
+Requirements
++ Kafka
++ Zookeeper
++ Debezium
+
+Connector worker example:
+```json
+{
+  "name": "{CONNECTOR_NAME}",
+  "config": {
+    "connector.class": "io.debezium.connector.sqlserver.SqlServerConnector",
+    "tasks.max": "1",
+    "database.server.name": "{DATABASE_SERVER_NAME}",
+    "database.hostname": "{DATABASE_HOSTNAME}",
+    "database.port": "{DATABASE_PORT}",
+    "database.user": "{DATABASE_USER}",
+    "database.password": "{DATABASE_PASSWORD}",
+    "database.dbname": "{DATABASE_NAME}",
+    "database.history.kafka.bootstrap.servers": "{KAFKA_SERVER}",
+    "database.history.kafka.topic": "dbhistory.messages",
+    "schema.whitelist": "{DATABASE_SCHEMA}",
+    "table.whitelist": "{DATABASE_SCHEMA}.{TABLE_NAME}",
+    "transforms": "outbox",
+    "transforms.outbox.type": "io.debezium.transforms.outbox.EventRouter",
+    "transforms.outbox.route.topic.replacement": "{ANY_YOUR_PREFIX}-${routedByValue}",
+    "value.converter": "io.debezium.converters.ByteBufferConverter",
+    "key.converter": "io.debezium.converters.ByteBufferConverter",
+    "value.converter.delegate.converter.type": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.delegate.converter.type": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.delegate.converter.type.schemas.enable": false,
+    "key.converter.delegate.converter.type.schemas.enable": false
+  }
+}
+```
+
+
+
 
 
 
