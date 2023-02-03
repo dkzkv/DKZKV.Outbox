@@ -59,6 +59,7 @@ Requirements
 + Kafka
 + Zookeeper
 + Debezium
++ Ms Sql
 
 Connector worker example:
 ```json
