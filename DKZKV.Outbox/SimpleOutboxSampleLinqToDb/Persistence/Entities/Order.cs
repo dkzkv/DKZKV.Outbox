@@ -2,7 +2,7 @@ using LinqToDB.Mapping;
 
 namespace SimpleOutboxSampleLinqToDb.Persistence.Entities;
 
-[Table(Name = "orders_linq2db")]
+[Table(Name = "orders")]
 public class Order 
 {
     [PrimaryKey]
